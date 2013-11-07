@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch-2.1.xsd">
+
+    <import resource="asrBatchFileTokenizer.xml"/>
+
+    <job id="asrJob" xmlns="http://www.springframework.org/schema/batch">
+        <step id="step1">
+            <tasklet>
+                <chunk reader="reader" writer="asrWriter" commit-interval="5">
+                    <streams>
+                        <stream ref="fileItemReader"/>
+                    </streams>
+                </chunk>
+            </tasklet>
+        </step>
+    </job>
+
+    <bean id="reader" class="com.sabre.apd.loyalty.batch.asr.StationDocReader">
+        <property name="fieldSetReader" ref="fileItemReader"/>
+        <property name="stationHeaderFieldMapper" ref="stationMapper"/>
+        <property name="txHeaderFieldMapper" ref="txHeaderMapper"/>
+        <property name="docInfoFieldMapper" ref="docInfoMapper"/>
+        <property name="docAmountsFieldMapper" ref="docAmountsMapper"/>
+        <property name="stdDocAmountsFieldMapper" ref="stdDocAmountsMapper"/>
+        <property name="commissionFieldMapper" ref="commissionMapper"/>
+        <property name="itineraryFieldMapper" ref="itineraryMapper"/>
+        <property name="paxFieldMapper" ref="paxMapper"/>
+        <property name="fareCalculationFieldMapper" ref="fareCalculationMapper"/>
+        <property name="fopFieldMapper" ref="fopMapper"/>
+    </bean>
+
+    <bean id="stationMapper" class="com.sabre.apd.loyalty.batch.asr.mapper.StationFieldSetMapper"/>
+    <bean id="txHeaderMapper" class="com.sabre.apd.loyalty.batch.asr.mapper.TXHeaderFieldSetMapper"/>
+    <bean id="docInfoMapper" class="com.sabre.apd.loyalty.batch.asr.mapper.DocInfoFieldSetMapper"/>
+    <bean id="docAmountsMapper" class="com.sabre.apd.loyalty.batch.asr.mapper.DocAmountsFieldSetMapper"/>
+    <bean id="stdDocAmountsMapper" class="com.sabre.apd.loyalty.batch.asr.mapper.StdDocAmountsFieldSetMapper"/>
+    <bean id="commissionMapper" class="com.sabre.apd.loyalty.batch.asr.mapper.CommissionFieldSetMapper"/>
+    <bean id="itineraryMapper" class="com.sabre.apd.loyalty.batch.asr.mapper.ItineraryFieldSetMapper"/>
+    <bean id="paxMapper" class="com.sabre.apd.loyalty.batch.asr.mapper.PAXFieldSetMapper"/>
+    <bean id="fareCalculationMapper" class="com.sabre.apd.loyalty.batch.asr.mapper.FareCalculationFieldSetMapper"/>
+    <bean id="miscMapper" class="com.sabre.apd.loyalty.batch.asr.mapper.MISCFieldSetMapper"/>
+    <bean id="fopMapper" class="com.sabre.apd.loyalty.batch.asr.mapper.FOPFieldSetMapper"/>
+
+    <bean id="fileItemReader" class="org.springframework.batch.item.file.FlatFileItemReader">
+        <property name="resource"
+                  value="classpath:testASR.txt"/>
+        <property name="lineMapper">
+            <bean class="org.springframework.batch.item.file.mapping.DefaultLineMapper">
+                <property name="lineTokenizer" ref="asrFileTokenizer"/>
+                <property name="fieldSetMapper">
+                    <bean class="org.springframework.batch.item.file.mapping.PassThroughFieldSetMapper"/>
+                </property>
+            </bean>
+        </property>
+    </bean>
+
+
+    <!--<bean id="testWriter" class="org.springframework.batch.item.file.FlatFileItemWriter">-->
+        <!--<property name="resource" value="file:target/test-outputs/Output.txt"/>-->
+        <!--<property name="lineAggregator">-->
+            <!--<bean class="com.sabre.apd.loyalty.batch.asr.DummyLineAggregator">-->
+            <!--</bean>-->
+        <!--</property>-->
+    <!--</bean>-->
+    <bean id="asrWriter" class="com.sabre.apd.loyalty.batch.asr.writer.MessageQueueWriter">
+        <constructor-arg index="0" ref="jmsTemplate"/>
+    </bean>
+
+    <bean id="jobLauncher"
+          class="org.springframework.batch.core.launch.support.SimpleJobLauncher">
+        <property name="jobRepository" ref="jobRepository"/>
+    </bean>
+
+    <bean id="transactionManager"
+          class="org.springframework.batch.support.transaction.ResourcelessTransactionManager"/>
+
+    <bean id="jobRepository"
+          class="org.springframework.batch.core.repository.support.MapJobRepositoryFactoryBean">
+        <property name="transactionManager" ref="transactionManager"/>
+    </bean>
+
+    <bean id="connectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
+        <!--<property name="brokerURL" value="tcp://localhost:61616"/>-->
+        <property name="brokerURL" value="vm://testQueue"/>
+    </bean>
+
+    <bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+        <property name="connectionFactory" ref="connectionFactory"/>
+        <property name="sessionTransacted" value="true"/>
+    </bean>
+
+</beans>

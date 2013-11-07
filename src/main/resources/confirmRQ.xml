@@ -1,0 +1,44 @@
+<ConfirmRQ>
+    <StationNumber>41000245</StationNumber>
+    <TicketNumber>83821610048142</TicketNumber>
+    <PNR>MFRGMZ</PNR>
+    <Amount>149.80</Amount>
+    <Paxs>
+        <Pax>
+            <FirstName>A</FirstName>
+            <LastName>JANIAK</LastName>
+        </Pax>
+    </Paxs>
+    <TotalTicketPrice>149.80</TotalTicketPrice>
+    <BaseFare>117.00</BaseFare>
+    <Tax>32.80</Tax>
+    <Segments>
+        <Segment>
+            <SegNumber>1</SegNumber>
+            <CouponUseIndicator>F</CouponUseIndicator>
+            <Origin>YYC</Origin>
+            <Destination>YVR</Destination>
+            <FlightNumber>WS0547</FlightNumber>
+            <Date>20OCT2009</Date>
+            <Clas>G</Clas>
+            <StopoverIndicator>X</StopoverIndicator>
+            <Fare>GBRUVOPL</Fare>
+        </Segment>
+    </Segments>
+    <TourCode>IBM03</TourCode>
+    <Taxes>
+        <TaxDetail>
+            <Type>CA</Type>
+            <Amount>4.67</Amount>
+        </TaxDetail>
+        <TaxDetail>
+            <Type>XG</Type>
+            <Amount>7.13</Amount>
+        </TaxDetail>
+        <TaxDetail>
+            <Type>SQ</Type>
+            <Amount>21.00</Amount>
+        </TaxDetail>
+    </Taxes>
+    <FareCalculation>YYC WS YVR Q15.00Q3.00 99.00CAD117.00END</FareCalculation>
+</ConfirmRQ>

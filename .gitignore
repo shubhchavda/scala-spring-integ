@@ -1,0 +1,9 @@
+.hg
+.idea
+out
+bin
+*.zip
+*.7z
+*.war
+*.class
+
