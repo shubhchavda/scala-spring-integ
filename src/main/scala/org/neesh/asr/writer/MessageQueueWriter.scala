@@ -1,7 +1,7 @@
-package com.sabre.apd.loyalty.batch.asr.writer
+package org.neesh.asr.writer
 
 import org.springframework.batch.item.ItemWriter
-import com.sabre.apd.loyalty.batch.asr.beans.TX
+import org.neesh.asr.beans.TX
 import actors.{Future, Futures}
 import org.springframework.jms.core.{MessageCreator, JmsTemplate}
 import javax.jms.{Message, Session, JMSException}
@@ -9,7 +9,7 @@ import javax.jms.{Message, Session, JMSException}
 //import collection.mutable.Buffer
 
 /**
- * User: SG0209008
+ * User: Shubh Chavda
  * Date: 4/30/11
  * Time: 4:44 PM
  * To change this template use File | Settings | File Templates.

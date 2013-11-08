@@ -1,4 +1,4 @@
-package com.sabre.apd.loyalty.batch.asr
+package org.neesh.asr
 
 import beans._
 import org.springframework.batch.item.ItemReader
@@ -8,7 +8,7 @@ import org.springframework.batch.item.file.mapping.FieldSetMapper
 import collection.mutable.ListBuffer
 
 /**
- * User: SG0209008
+ * User: Shubh Chavda
  * Date: 3/27/11
  * Time: 3:03 PM
  * To change this template use File | Settings | File Templates.

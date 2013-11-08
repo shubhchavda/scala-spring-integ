@@ -1,10 +1,10 @@
-package com.sabre.apd.loyalty.batch.asr
+package org.neesh.asr
 
 import org.springframework.batch.item.file.transform.LineAggregator
 
 /**
  * Created by IntelliJ IDEA.
- * User: SG0209008
+ * User: Shubh Chavda
  * Date: 3/29/11
  * Time: 7:21 AM
  * To change this template use File | Settings | File Templates.

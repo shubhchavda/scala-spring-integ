@@ -1,10 +1,10 @@
-package com.sabre.apd.loyalty.batch.asr.writer
+package org.neesh.asr.writer
 
-import com.sabre.apd.loyalty.batch.asr.beans.{TKTDocIdentification, TX}
+import org.neesh.asr.beans.{TKTDocIdentification, TX}
 
 /**
  * Created by IntelliJ IDEA.
- * User: SG0209008
+ * User: Shubh Chavda
  * Date: 4/24/11
  * Time: 11:27 PM
  * To change this template use File | Settings | File Templates.

@@ -1,4 +1,4 @@
-package com.sabre.apd.loyalty.batch.asr.beans
+package org.neesh.asr.beans
 
 import reflect.BeanProperty
 import xml.Elem

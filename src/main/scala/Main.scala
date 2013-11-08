@@ -1,4 +1,4 @@
-import com.sabre.apd.loyalty.batch.asr.beans.TX
+import org.neesh.asr.beans.TX
 import javax.jms.{Message, Session}
 import org.springframework.batch.core.launch.support.SimpleJobLauncher
 import org.springframework.batch.core.{JobParametersBuilder, JobParameters, Job}
@@ -7,7 +7,7 @@ import org.springframework.jms.core.{MessageCreator, JmsTemplate}
 
 /**
  * Created by IntelliJ IDEA.
- * User: SG0209008
+ * User: Shubh Chavda
  * Date: 3/24/11
  * Time: 2:14 PM
  * To change this template use File | Settings | File Templates.

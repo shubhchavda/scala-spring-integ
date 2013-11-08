@@ -19,7 +19,7 @@
         </step>
     </job>
 
-    <bean id="reader" class="com.sabre.apd.loyalty.batch.asr.StationDocReader">
+    <bean id="reader" class="org.neesh.asr.StationDocReader">
         <property name="fieldSetReader" ref="fileItemReader"/>
         <property name="stationHeaderFieldMapper" ref="stationMapper"/>
         <property name="txHeaderFieldMapper" ref="txHeaderMapper"/>
@@ -33,17 +33,17 @@
         <property name="fopFieldMapper" ref="fopMapper"/>
     </bean>
 
-    <bean id="stationMapper" class="com.sabre.apd.loyalty.batch.asr.mapper.StationFieldSetMapper"/>
-    <bean id="txHeaderMapper" class="com.sabre.apd.loyalty.batch.asr.mapper.TXHeaderFieldSetMapper"/>
-    <bean id="docInfoMapper" class="com.sabre.apd.loyalty.batch.asr.mapper.DocInfoFieldSetMapper"/>
-    <bean id="docAmountsMapper" class="com.sabre.apd.loyalty.batch.asr.mapper.DocAmountsFieldSetMapper"/>
-    <bean id="stdDocAmountsMapper" class="com.sabre.apd.loyalty.batch.asr.mapper.StdDocAmountsFieldSetMapper"/>
-    <bean id="commissionMapper" class="com.sabre.apd.loyalty.batch.asr.mapper.CommissionFieldSetMapper"/>
-    <bean id="itineraryMapper" class="com.sabre.apd.loyalty.batch.asr.mapper.ItineraryFieldSetMapper"/>
-    <bean id="paxMapper" class="com.sabre.apd.loyalty.batch.asr.mapper.PAXFieldSetMapper"/>
-    <bean id="fareCalculationMapper" class="com.sabre.apd.loyalty.batch.asr.mapper.FareCalculationFieldSetMapper"/>
-    <bean id="miscMapper" class="com.sabre.apd.loyalty.batch.asr.mapper.MISCFieldSetMapper"/>
-    <bean id="fopMapper" class="com.sabre.apd.loyalty.batch.asr.mapper.FOPFieldSetMapper"/>
+    <bean id="stationMapper" class="org.neesh.asr.mapper.StationFieldSetMapper"/>
+    <bean id="txHeaderMapper" class="org.neesh.asr.mapper.TXHeaderFieldSetMapper"/>
+    <bean id="docInfoMapper" class="org.neesh.asr.mapper.DocInfoFieldSetMapper"/>
+    <bean id="docAmountsMapper" class="org.neesh.asr.mapper.DocAmountsFieldSetMapper"/>
+    <bean id="stdDocAmountsMapper" class="org.neesh.asr.mapper.StdDocAmountsFieldSetMapper"/>
+    <bean id="commissionMapper" class="org.neesh.asr.mapper.CommissionFieldSetMapper"/>
+    <bean id="itineraryMapper" class="org.neesh.asr.mapper.ItineraryFieldSetMapper"/>
+    <bean id="paxMapper" class="org.neesh.asr.mapper.PAXFieldSetMapper"/>
+    <bean id="fareCalculationMapper" class="org.neesh.asr.mapper.FareCalculationFieldSetMapper"/>
+    <bean id="miscMapper" class="org.neesh.asr.mapper.MISCFieldSetMapper"/>
+    <bean id="fopMapper" class="org.neesh.asr.mapper.FOPFieldSetMapper"/>
 
     <bean id="fileItemReader" class="org.springframework.batch.item.file.FlatFileItemReader">
         <property name="resource"
@@ -62,11 +62,11 @@
     <!--<bean id="testWriter" class="org.springframework.batch.item.file.FlatFileItemWriter">-->
         <!--<property name="resource" value="file:target/test-outputs/Output.txt"/>-->
         <!--<property name="lineAggregator">-->
-            <!--<bean class="com.sabre.apd.loyalty.batch.asr.DummyLineAggregator">-->
+            <!--<bean class="org.neesh.asr.DummyLineAggregator">-->
             <!--</bean>-->
         <!--</property>-->
     <!--</bean>-->
-    <bean id="asrWriter" class="com.sabre.apd.loyalty.batch.asr.writer.MessageQueueWriter">
+    <bean id="asrWriter" class="org.neesh.asr.writer.MessageQueueWriter">
         <constructor-arg index="0" ref="jmsTemplate"/>
     </bean>
 

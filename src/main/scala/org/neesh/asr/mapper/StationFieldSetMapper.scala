@@ -1,12 +1,12 @@
-package com.sabre.apd.loyalty.batch.asr.mapper
+package org.neesh.asr.mapper
 
 import org.springframework.batch.item.file.mapping.FieldSetMapper
 import org.springframework.batch.item.file.transform.FieldSet
-import com.sabre.apd.loyalty.batch.asr.beans.{RecordType, StationHeader}
+import org.neesh.asr.beans.{RecordType, StationHeader}
 
 /**
  * Created by IntelliJ IDEA.
- * User: SG0209008
+ * User: Shubh Chavda
  * Date: 3/28/11
  * Time: 9:35 PM
  * To change this template use File | Settings | File Templates.
